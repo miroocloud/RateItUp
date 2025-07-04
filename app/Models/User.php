@@ -19,11 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'username',
         'email',
         'password',
-        'role',
         'avatar',
+        'role_id',
     ];
 
     /**
@@ -50,15 +49,50 @@ class User extends Authenticatable
     }
 
     /**
-     * Find user by username or email for authentication
-     *
-     * @param string $username
-     * @return \App\Models\User|null
+     * Relasi ke model Role
      */
-    public static function findForLogin(string $username)
+    public function role()
     {
-        return static::where('username', $username)
-            ->orWhere('email', $username)
-            ->first();
+        return $this->belongsTo(Role::class);
+    }
+
+    public function places()
+    {
+        return $this->hasMany(Place::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function checkins()
+    {
+        return $this->hasMany(Checkin::class);
+    }
+
+    public function reviewComments()
+    {
+        return $this->hasMany(ReviewComment::class);
+    }
+
+    public function reviewRatings()
+    {
+        return $this->hasMany(ReviewRating::class);
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Place::class, 'favorites');
+    }
+
+    public function isAdmin()
+    {
+        return optional($this->role)->name === 'administrator';
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'user';
     }
 }

@@ -1,5 +1,9 @@
 {
     "$schema": "https://json.schemastore.org/package.json",
+    "name": "rateitup",
+    "version": "1.1.0",
+    "description": "Rate It Up - A Laravel and Vite powered application for exploring and rating places in Indonesia.",
+    "author": "Farid Nizam",
     "private": true,
     "type": "module",
     "scripts": {
@@ -7,7 +11,11 @@
         "dev": "npx concurrently -k -n \"server,vite\" -c \"green,blue,yellow\" \"npm run serve\" \"vite\"",
         "serve": "php artisan serve",
         "analyze": "node analyze-bundle.js",
-        "build:analyze": "npm run build && npm run analyze"
+        "build:analyze": "npm run build && npm run analyze",
+        "migrate": "php artisan migrate",
+        "migrate:fresh": "php artisan migrate:fresh --seed",
+        "migrate:rollback": "php artisan migrate:rollback",
+        "seed": "php artisan db:seed"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
@@ -18,7 +26,9 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
+        "countup.js": "^2.9.0",
         "dayjs": "^1.11.13",
+        "jquery": "^3.7.1",
         "terser": "^5.43.1"
     }
 }

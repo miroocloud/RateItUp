@@ -3,32 +3,37 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <div class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white fill-white" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
+                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center hidden">
+                        {{-- Logo --}}
                     </div>
                     <h4 class="text-xl font-bold">Rate it Up</h4>
                 </div>
-                <p class="text-gray-400">Rumahnya penikmat cita rasa Indonesia.</p>
+                <p class="text-gray-400">Teman setia penjelajah rasa Indonesia. Jelajahi, rekomendasikan, dan bagikan
+                    momen kuliner-mu di sini.</p>
             </div>
             <div>
                 <h5 class="font-semibold mb-4">Jelajahi</h5>
                 <ul class="space-y-2 text-gray-400">
-                    <li><a href="#'places.index" class="hover:text-white transition-colors">Semua
+                    <li><a href="{{ route('places.index') }}" class="hover:text-white transition-colors">Semua
                             Tempat</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Kategori</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Lokasi</a></li>
+                    <li><a href="{{ route('places.index', ['category' => 1]) }}"
+                            class="hover:text-white transition-colors">Traditional</a></li>
+                    <li><a href="{{ route('places.index', ['category' => 2]) }}"
+                            class="hover:text-white transition-colors">Street Food</a></li>
                 </ul>
             </div>
             <div>
                 <h5 class="font-semibold mb-4">Komunitas</h5>
                 <ul class="space-y-2 text-gray-400">
-                    <li><a href="#'places.create" class="hover:text-white transition-colors">Tambah
-                            Tempat</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Tulis Review</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Leaderboard</a></li>
+                    @auth
+                        <li><a href="{{ route('places.create') }}" class="hover:text-white transition-colors">Tambah
+                                Tempat</a></li>
+                        <li><a href="{{ route('checkins.index') }}" class="hover:text-white transition-colors">Check-in
+                                Saya</a></li>
+                    @else
+                        <li><a href="{{ route('register') }}" class="hover:text-white transition-colors">Daftar</a></li>
+                        <li><a href="{{ route('login') }}" class="hover:text-white transition-colors">Masuk</a></li>
+                    @endauth
                 </ul>
             </div>
             <div>

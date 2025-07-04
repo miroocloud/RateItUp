@@ -3,22 +3,33 @@
 @section('content')
     <div class="min-h-screen bg-gray-50">
         <div class="container mx-auto px-4 py-8">
+            <!-- Back Button -->
+            <a href="{{ route('places.index') }}"
+                class="inline-flex items-center mb-6 text-orange-600 hover:text-orange-800 font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Kembali
+            </a>
+
             <!-- Place Header -->
             <div class="bg-white rounded-lg shadow-sm border overflow-hidden mb-8">
-                <div class="aspect-video bg-gray-200 relative">
+                <div class="h-80 bg-gray-200 relative rounded-t-lg overflow-hidden">
                     @if ($place->image)
                         <img src="{{ Storage::url($place->image) }}" alt="{{ $place->name }}"
-                            class="w-full h-full object-cover">
+                            class="w-full h-full object-cover rounded-t-lg transition-transform duration-300 hover:scale-105">
                     @else
                         <div
-                            class="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
-                            <svg class="w-24 h-24 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center rounded-t-lg">
+                            <svg class="w-34 h-34 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                         </div>
                     @endif
-                    <span class="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+
+                    <span
+                        class="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow">
                         {{ $place->category->name }}
                     </span>
                 </div>
@@ -105,7 +116,7 @@
 
                             @if ($place->price_range)
                                 <div class="mb-4">
-                                    <h3 class="font-semibold text-gray-900 mb-2">Kisaran Harga</h3>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Harga</h3>
                                     <p class="text-gray-600">{{ $place->price_range }}</p>
                                 </div>
                             @endif
@@ -173,7 +184,8 @@
                                     <input type="hidden" name="rating" id="rating" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="comment" class="block text-sm font-medium text-gray-700 mb-2">Komentar</label>
+                                    <label for="comment"
+                                        class="block text-sm font-medium text-gray-700 mb-2">Komentar</label>
                                     <textarea name="comment" id="comment" rows="4" required
                                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                         placeholder="Bagikan pengalaman Anda..."></textarea>

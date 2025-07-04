@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->string('color', 7)->default('#f97316'); // Orange color
+            $table->string('color', 7)->default('#f97316');
             $table->timestamps();
         });
     }
