@@ -38,7 +38,7 @@ $ cd RateItUp
 $ composer install
 $ npm install
 
-# Salin .env dan generate key
+# .env dan generate key
 $ cp .env.example .env
 $ php artisan key:generate
 
@@ -47,10 +47,10 @@ $ php artisan key:generate
 # Migrasi & seeder database
 $ php artisan migrate --seed
 
-# Jalankan server development (Laravel & Vite)
+# Development (Laravel & Vite)
 $ npm run dev
 
-# Untuk build production
+# Build production
 $ npm run build
 ```
 
